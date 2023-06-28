@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.3.2"
+  },
+  "dependencies": {
+    "alpinejs": "^3.12.2",
+    "esbuild": "^0.18.10"
+  },
+  "scripts":{
+    "build-js":"npx esbuild index.js --outfile=js/index.js --bundle --watch"
+  }
+}

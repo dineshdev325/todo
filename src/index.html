@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Alpine Plugins -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Alpine Core -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- tailwind -->
+  <link href="/dist/output.css" rel="stylesheet">
+</head>
+
+<body class="flex justify-center mt-10  bg-blue-50">
+
+  <div class="bg-white px-6 py-2 shadow-md w-3/4">
+  <h2 class="text-3xl my-2">Todo Application</h2>
+  <div 
+  x-data="{ 
+  tasks:$persist([]),
+  remain_task_count:0,
+  current:'',
+  active_tab:'all',
+  message_state:false,
+  add_item(){
+    this.tasks.push(
+      {
+        task:this.current,
+        is_complete:false
+      }
+    );
+    this.current='';
+    this.message_state=true
+  },
+  update_remain_count(){
+    this.remain_task_count=0
+    this.tasks.map((item)=>{
+
+       if(!item.is_complete){
+        this.remain_task_count++;
+       }
+    })
+  }
+}" 
+x-effect="update_remain_count">
+
+<div x-show="message_state" class="px-3 py-2 bg-emerald-600 text-white absolute inset-0 h-10"> 
+  &#127881;Congratulations! You've successfully added a new task to your to-do list &#128221;.
+</div>
+
+    <!-- FORM -->
+        <form class="flex" @submit.prevent @submit="add_item">
+        <input  type="text" required class="border px-5 py-2 w-full focus:border-blue-600 focus:border-2 outline-none"
+          x-model="current" placeholder="Enter the Task">
+        <button class="bg-[#3563E9] text-white px-10 font-semibold py-2 ">Add</button>
+      </form>
+
+      <!-- FILTER BUTTONS -->
+      <!-- <div class="text-[#3563E9] mt-4 flex gap-2">
+       <button @click="active_tab='all'" class="px-5 py-1 border-[#3563E9] rounded" :style="active_tab=='all'?'background-color:#3563E9 ;color:white': ''">All</button>
+       <button @click="active_tab='completed'" class="px-5 py-1 border-[#3563E9] rounded" :style="active_tab=='completed'?'background-color:#3563E9;color:white':''">Completed</button>
+       <button @click="active_tab='active'" class="px-5 py-1 border-[#3563E9] rounded" :style="active_tab=='active'?'background-color:#3563E9;color:white' : ''">Active</button>
+
+          </div> -->
+      <div class="text-xl my-2">Your Tasks</div>
+      <template x-for="item in tasks">
+        <!-- TASK ITEMS -->
+        <div 
+          x-show="active_tab=='all'?true:active_tab=='completed'?item.is_complete:!item.is_complete;"
+          class="flex gap-3 justify-between items-center  my-2  py-1"
+          :style="item.is_complete?'text-decoration:line-through;opacity:0.4':''">
+          <div>
+            <!-- UPDATE TASKS STATUS -->
+            <input 
+            @change="item.is_complete=!item.is_complete" 
+            type="checkbox" name="" id=""
+            class="p-2 h-5 w-5 accent-blue-600 rounded-full"><span x-text="item.task" class=" text-xl ms-2"></span>
+          </div>
+          <!-- DELETE TASKS -->
+          <svg 
+            @click="tasks.splice(tasks.indexOf(item),1)" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 24 24" stroke-width="1.5" stroke="#dc2626" class="w-7 h-7 hover:cursor-pointer">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </div>
+      </template>
+      <!-- <div class="text-gray-600 flex justify-between" x-data>
+        <div>Total Tasks: <span class="text-gray-800" x-text="tasks.length"></span></div>
+      <div>Count of Remaining Tasks: <span class="text-gray-800" x-text="remain_task_count"></span></div>
+    </div> -->
+
+    </div>
+
+  </div>
+
+
+</body>
+
+</html>
