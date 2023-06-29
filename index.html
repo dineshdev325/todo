@@ -17,7 +17,8 @@
   <div class="flex justify-center mt-16">
     <div class="w-3/4 px-6 py-4 bg-white rounded-md shadow-xl">
       <h2 class="my-2 text-3xl ">Todo Application</h2>
-      <div x-data="{ 
+      <div x-data="
+      { 
          tasks:$persist([]),
          remain_task_count:0,
          current:'',
@@ -45,7 +46,8 @@
               }
            })
          }
-}" x-effect="update_remain_count">
+      }" 
+      x-effect="update_remain_count">
 
         <div x-cloak x-show="message_state" class="absolute inset-0 h-10 px-3 py-2 text-white bg-emerald-600">
           &#127881;Congratulations! You've successfully added a new task to your to-do list &#128221;.
@@ -71,7 +73,7 @@
         </div>
         <div class="my-2 text-xl">Your Tasks</div>
         <template x-for="item in tasks">
-          <!-- TASK ITEMS -->
+        <!-- TASK ITEMS -->
           <div x-show="active_tab=='all'?true:active_tab=='completed'?item.is_complete:!item.is_complete;"
             class="flex items-center justify-between gap-3 py-1 my-2"
             :style="item.is_complete?'text-decoration:line-through;opacity:0.4':''">
@@ -80,7 +82,7 @@
               <input @change="item.is_complete=!item.is_complete" type="checkbox" name="" id=""
                 class="w-5 h-5 p-2 rounded-full accent-blue-600"><span x-text="item.task" class="text-xl ms-2"></span>
             </div>
-            <!-- DELETE TASKS -->
+        <!-- DELETE TASKS -->
             <svg @click="tasks.splice(tasks.indexOf(item),1)" xmlns="http://www.w3.org/2000/svg" fill="none"
               viewBox="0 0 24 24" stroke-width="1.5" stroke="#dc2626" style="width:1.75rem;height:1.75rem"
               class="hover:cursor-pointer">
