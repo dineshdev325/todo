@@ -14,10 +14,7 @@
   <link href="/dist/output.css" rel="stylesheet">
 </head>
 <body class="bg-blue-600/10">
-  
-
 <div class="flex justify-center mt-16">
-
   <div class="w-3/4 px-6 py-4 bg-white rounded-md shadow-xl">
   <h2 class="my-2 text-3xl ">Todo Application</h2>
   <div 
@@ -88,7 +85,7 @@ x-effect="update_remain_count">
           <!-- DELETE TASKS -->
           <svg 
             @click="tasks.splice(tasks.indexOf(item),1)" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 24 24" stroke-width="1.5" stroke="#dc2626" class="w-7 h-7 hover:cursor-pointer">
+            viewBox="0 0 24 24" stroke-width="1.5" stroke="#dc2626" style="width:1.75rem;height:1.75rem" class="hover:cursor-pointer">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </div>
@@ -97,16 +94,9 @@ x-effect="update_remain_count">
         <div>Total Tasks: <span class="text-gray-800" x-text="tasks.length"></span></div>
       <div>Remaining Tasks: <span class="text-gray-800" x-text="remain_task_count"></span></div>
     </div>
-
     </div>
-
   </div>
-
-
-
-
   </div>
   
 </body>
-
 </html>
