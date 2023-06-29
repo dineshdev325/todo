@@ -7,6 +7,7 @@
     "esbuild": "^0.18.10"
   },
   "scripts":{
-    "build-js":"npx esbuild index.js --outfile=js/index.js --bundle --watch"
+    "build-js":"npx esbuild index.js --outfile=js/index.js --bundle --watch",
+    "tailwind":" npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch"
   }
 }
