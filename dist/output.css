@@ -792,16 +792,17 @@ video {
   display: none;
 }
 
-.h-10 {
-  height: 2.5rem;
-}
-
 .h-5 {
   height: 1.25rem;
 }
 
-.h-7 {
-  height: 1.75rem;
+.h-full {
+  height: 100%;
+}
+
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .w-3\/4 {
@@ -810,10 +811,6 @@ video {
 
 .w-5 {
   width: 1.25rem;
-}
-
-.w-7 {
-  width: 1.75rem;
 }
 
 .w-full {
